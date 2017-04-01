@@ -87,7 +87,11 @@ class User {
     }
 
     public function logout() {
+
+        $this->_db->delete('users_session', array('id_user', '=', $this->data()->id_user));
+
         Session::delete($this->_sessionName);
+        Cookie::delete($this->_cookieName);
     }
 
     public function data() {
