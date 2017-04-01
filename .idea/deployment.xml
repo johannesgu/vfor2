@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="skoli">
+  <component name="PublishConfigData" autoUpload="Always" serverName="skoli">
     <serverData>
       <paths name="skoli">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/nemendur/johannesgj/vfor2/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/nemendur/johannesgj/vfor2/game/" />
           </mappings>
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
