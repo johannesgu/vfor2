@@ -48,35 +48,42 @@ class User {
         return false;
     }
 
-    public function login($email = null, $password = null, $remember) {
-        $user = $this->find($email);
+    public function login($email = null, $password = null, $remember = false) {
+        if (!$email && !$password && $this->exists()) {
+            Session::put($this->_sessionName, $this->data()->id_user);
+        } else {
+            $user = $this->find($email);
+            if ($user) {
+                if (password_verify($password, $this->data()->password)) {
+                    Session::put($this->_sessionName, $this->data()->id_user);
 
-        if ($user) {
-            if (password_verify($password, $this->data()->password)) {
-                Session::put($this->_sessionName, $this->data()->id_user);
+                    if ($remember) {
+                        $hash = Hash::unique();
+                        $hashCheck = $this->_db->get('users_session', array('id_user', '=', $this->data()->id_user));
 
-                if ($remember) {
-                    $hash = Hash::unique();
-                    $hashCheck = $this->_db->get('users_session', array('id_user', '=', $this->data()->id_user));
+                        if (!$hashCheck->count()) {
+                            $this->_db->insert('users_session', array(
+                                'id_user' => $this->data()->id_user,
+                                'hash' => $hash
+                            ));
+                        } else {
+                            $hash = $hashCheck->first()->hash;
+                        }
 
-                    if (!$hashCheck->count()) {
-                        $this->_db->insert('users_session', array(
-                            'id_user' => $this->data()->id_user,
-                            'hash' => $hash
-                        ));
-                    } else {
-                        $hash = $hashCheck->first()->hash;
+                        Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
+
                     }
 
-                    Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
-
+                    return true;
                 }
-
-                return true;
             }
         }
 
         return false;
+    }
+
+    public function exists() {
+        return (!empty($this->_data)) ? true : false;
     }
 
     public function logout() {
