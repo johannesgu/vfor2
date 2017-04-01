@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%; }
+
+body {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #16262E;
+  font-size: 10vmin;
+  color: #F7FFF7; }
+
+.part {
+  position: relative;
+  background-color: #3C7A89; }
+
+.part--animated {
+  transition: opacity .25s ease-in-out, -webkit-transform .25s ease-in-out;
+  transition: transform .25s ease-in-out, opacity .25s ease-in-out;
+  transition: transform .25s ease-in-out, opacity .25s ease-in-out, -webkit-transform .25s ease-in-out; }
+
+.part--one {
+  width: 25vmin;
+  height: 25vmin; }
+  .part--one:before {
+    content: '?';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    transition: opacity .25s ease-in-out; }
+
+.part--one:hover:before {
+  opacity: 0; }
+
+.part--one:hover .part--two {
+  pointer-events: initial;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0); }
+
+.part--two {
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transform: translateY(25%);
+  -ms-transform: translateY(25%);
+  transform: translateY(25%);
+  width: 200%;
+  height: 100%;
+  bottom: -100%;
+  border-bottom-right-radius: 12.5vmin; }
+
+.part--two:hover .part--three {
+  pointer-events: initial;
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0); }
+
+.part--three {
+  opacity: 0;
+  -webkit-transform: translate(25%, -25%);
+  -ms-transform: translate(25%, -25%);
+  transform: translate(25%, -25%);
+  pointer-events: none;
+  right: -50%;
+  top: -200%;
+  height: 200%;
+  width: 50%;
+  border-top-right-radius: 12.5vmin; }
+
+.part--three:hover .part--four {
+  pointer-events: initial;
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0); }
+
+.part--four {
+  opacity: 0;
+  -webkit-transform: translate(-25%, -25%);
+  -ms-transform: translate(-25%, -25%);
+  transform: translate(-25%, -25%);
+  pointer-events: none;
+  width: 200%;
+  height: 50%;
+  left: -200%;
+  border-top-left-radius: 12.5vmin; }
+
+.part--four:hover > .part--five {
+  pointer-events: initial;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0); }
+
+.part--five {
+  opacity: 0;
+  -webkit-transform: translate(-25%, 25%);
+  -ms-transform: translate(-25%, 25%);
+  transform: translate(-25%, 25%);
+  pointer-events: none;
+  width: 50%;
+  height: 200%;
+  top: 100%;
+  border-bottom-left-radius: 12.5vmin; }
+
+/**** ****/
+.end-boss {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; }
+  .end-boss:before {
+    content: '?';
+    display: block;
+    height: 100%;
+    text-align: center;
+    line-height: 25vmin; }
+  .end-boss:after {
+    pointer-events: none;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("http://i.memeful.com/media/post/PRoPBdo_700wa_0.gif") center center no-repeat;
+    background-size: cover;
+    border-radius: 12.5vmin;
+    width: 300%;
+    height: 300%;
+    -webkit-transform: translateY(-66.66667%);
+    -ms-transform: translateY(-66.66667%);
+    transform: translateY(-66.66667%);
+    opacity: 0;
+    transition: opacity .25s ease-in-out; }
+
+.end-boss:hover:after {
+  opacity: 1; }
