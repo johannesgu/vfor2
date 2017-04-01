@@ -7,7 +7,7 @@ $GLOBALS['config'] = array(
         'host' => 'localhost',
         'username' => '',
         'password' => '',
-        'db' => 'johannesgj_game'
+        'db' => ''
     ),
     'remember' => array(
         'cookie_name' => 'hash',
