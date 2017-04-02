@@ -2,14 +2,14 @@
 
 <?php
 
-if (Session::exists('home')) {
-    echo '<p>' . Session::flash('home') . '</p>';
-}
+    if (Session::exists('home')) {
+        echo '<p>' . Session::flash('home') . '</p>';
+    }
 
-$user = new User();
-if ($user->isLoggedIn()) {
+    $user = new User();
+    if ($user->isLoggedIn()) {
 ?>
-    <p>Hello <a href="#"><?php echo escape($user->data()->email); ?></a></p>
+    <p>Hello <a href="profile.php?user=<?php echo escape($user->data()->id_user); ?>"><?php echo escape($user->data()->email); ?></a></p>
 
     <ul>
         <li><a href="logout.php">Log out</a></li>
