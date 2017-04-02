@@ -18,6 +18,11 @@ if ($user->isLoggedIn()) {
     </ul>
 
 <?php
+
+    if ($user->hasPermission('admin')) {
+        echo '<p>You are an administrator</p>';
+    }
+
 } else {
     echo '<p>You need to <a href="login.php">log in</a> or <a href="register.php">register</a></p>';
 }
