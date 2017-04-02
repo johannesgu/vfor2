@@ -39,7 +39,7 @@ if (Input::exists()) {
     <label for="email" class="sr-only">Email address</label>
     <input type="email" pattern="(.*\w)@(.*[a-z])\.(.*[a-z])" id="email" name="email" class="form-control" placeholder="Email address" required autofocus value="<?php echo escape(Input::get('email')); ?>">
     <label for="password" class="sr-only">Password</label>
-    <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password" class="form-control" placeholder="Password" required>
+    <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" id="password" name="password" class="form-control" placeholder="Password" required>
     <div class="checkbox">
         <label for="remember">
             <input type="checkbox" name="remember" id="remember"> Remember me
