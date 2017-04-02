@@ -5,7 +5,7 @@
       <paths name="skoli">
         <serverdata>
           <mappings>
-            <mapping deploy="/vfor2/game" local="$PROJECT_DIR$" web="/nemendur/johannesgj/" />
+            <mapping deploy="/vfor2/pitchy" local="$PROJECT_DIR$" web="/nemendur/johannesgj/" />
           </mappings>
         </serverdata>
       </paths>

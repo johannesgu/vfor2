@@ -50,7 +50,7 @@
         <label for="first_name" class="sr-only">First Name</label>
         <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" pattern="(.*[a-zA-Z])" autofocus value="<?php echo escape($user->data()->first_name); ?>">
         <label for="middle_name" class="sr-only">Middle Name</label>
-        <input type="text" name="middle_name" id="middle_name" class="form-control" placeholder="Middle Name" pattern="(.*[a-zA-Z] )" value="<?php echo escape($user->data()->middle_name); ?>">
+        <input type="text" name="middle_name" id="middle_name" class="form-control" placeholder="Middle Name" pattern="(.*[a-zA-Z])\s?" value="<?php echo escape($user->data()->middle_name); ?>">
         <label for="last_name" class="sr-only">Last Name</label>
         <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" pattern="(.*[a-zA-Z])" value="<?php echo escape($user->data()->last_name); ?>">
 
