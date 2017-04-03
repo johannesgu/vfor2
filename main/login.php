@@ -18,6 +18,7 @@ if (Input::exists()) {
             $login = $user->login(Input::get('email'), Input::get('password'), $remember);
 
             if ($login) {
+                $user->update(array('last_login', '=', 'NOW()'), $user->data()->id_user);
                 Redirect::to('index.php');
             } else {
                 echo '<p>Sorry, logging in failed</p>';

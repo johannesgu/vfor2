@@ -13,9 +13,13 @@
 
             $validate = new Validate();
             $validation = $validate->check($_POST, array(
-                'first_name' => array(),
+                'first_name' => array(
+                    'min' => 2
+                ),
                 'middle_name' => array(),
-                'last_name' => array()
+                'last_name' => array(
+                    'min' => 2
+                )
             ));
 
             if ($validation->passed()) {

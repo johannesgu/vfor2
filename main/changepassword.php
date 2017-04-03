@@ -31,10 +31,8 @@
                 if (!password_verify(Input::get('password_current'), $user->data()->password)) {
                     echo 'Your current password is wrong';
                 } else {
-                    $salt = Hash::salt(32);
                     $user->update(array(
-                        'password' => password_hash(Input::get('password_new'), PASSWORD_DEFAULT),
-                        'salt' => $salt
+                        'password' => password_hash(Input::get('password_new'), PASSWORD_DEFAULT)
                     ));
 
                     Session::flash('home', 'Your password has been changed');
@@ -42,7 +40,7 @@
                 }
 
             } else {
-                foreach($validation->errors as $error) {
+                foreach($validation->errors() as $error) {
                     echo $error . '<br>';
                 }
             }
