@@ -126,4 +126,28 @@ class User {
         return $this->_isLoggedIn;
     }
 
+    public function getName() {
+        if ($this->data()->first_name && $this->data()->middle_name && $this->data()->last_name) {
+            return "{$this->data()->first_name} {$this->data()->middle_name} {$this->data()->last_name}";
+        }
+
+        if ($this->data()->first_name && $this->data()->last_name) {
+            return "{$this->data()->first_name} {$this->data()->last_name}";
+        }
+
+        if ($this->data()->first_name) {
+            return $this->data()->first_name;
+        }
+
+        return null;
+    }
+
+    public function getNameOrUsername() {
+        return $this->getName() ?: $this->data()->username;
+    }
+
+    public function getFirstNameOrUsername() {
+        return $this->data()->first_name ?: $this->data()->username;
+    }
+
 }

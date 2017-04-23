@@ -2,6 +2,12 @@
 
 <?php
 
+$user = new User();
+
+if ($user->isLoggedIn()) {
+    Redirect::to('index.php');
+}
+
 if (Input::exists()) {
     if (Token::check(Input::get('token'))) {
 
@@ -18,8 +24,6 @@ if (Input::exists()) {
             $login = $user->login(Input::get('email'), Input::get('password'), $remember);
 
             if ($login) {
-                // Set þetta inn á eftir ↓
-                // $user->update(array('last_login', 'NOW()'));
                 Redirect::to('index.php');
             } else {
                 echo '<p>Sorry, logging in failed</p>';
@@ -36,20 +40,31 @@ if (Input::exists()) {
 
 ?>
 
-<form class="form-signin" action="" method="post" autocomplete="off">
-    <h2 class="form-signin-heading">Please log in <i class="glyphicon glyphicon-music"></i></h2>
-    <label for="email" class="sr-only">Email address</label>
-    <input type="email" pattern="(.*\w)@(.*[a-z])\.(.*[a-z])" id="email" name="email" class="form-control" placeholder="Email address" required autofocus value="<?php echo escape(Input::get('email')); ?>">
-    <label for="password" class="sr-only">Password</label>
-    <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" id="password" name="password" class="form-control" placeholder="Password" required>
-    <div class="checkbox">
-        <label for="remember">
-            <input type="checkbox" name="remember" id="remember"> Remember me
-        </label>
+<h3>Log in</h3>
+
+<div class="row">
+    <div class="col-lg-6">
+        <form class="form-vertical" role="form" action="" method="post" autocomplete="off">
+            <div class="form-group">
+                <label for="email" class="control-label">Email address</label>
+                <input type="email" pattern="(.*\w)@(.*[a-z])\.(.*[a-z])" id="email" name="email" class="form-control" placeholder="Email address" required autofocus value="<?php echo escape(Input::get('email')); ?>">
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">Password</label>
+                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" id="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="checkbox">
+                <label for="remember">
+                    <input type="checkbox" name="remember" id="remember"> Remember me
+                </label>
+            </div>
+            <br>
+            <div class="form-group">
+                <button name="login" class="btn btn-default" type="submit">Log in</button>
+            </div>
+            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+        </form>
     </div>
-    <button name="login" class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-    <a href="register.php" class="btn btn-lg btn-default btn-block">New on this site? Register!</a>
-    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-</form>
+</div>
 
 <?php include 'includes/footer.php'; ?>
