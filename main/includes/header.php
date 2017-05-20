@@ -48,8 +48,8 @@ $user = new User();
             <?php endif; ?>
             <ul class="nav navbar-nav navbar-right">
                 <?php if ($user->isLoggedIn()) : ?>
-                    <li><a href="#"><?php echo $user->getNameOrUsername(); ?></a></li>
-                    <li><a href="#">Update profile</a></li>
+                    <li><a href="profile.php?user=<?php echo escape($user->data()->id_user); ?>"><?php echo $user->getNameOrUsername(); ?></a></li>
+                    <li><a href="update.php">Update profile</a></li>
                     <li><a href="logout.php">Log out</a></li>
                 <?php else : ?>
                     <li><a href="register.php">Register</a></li>
